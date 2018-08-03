@@ -3,12 +3,11 @@
         <nuxt-link :to="postLink">
             <div class="card">
                     <div class="card-image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Fairview_Dome.jpg/1600px-Fairview_Dome.jpg">
-                    <span class="card-title">Card Title</span>
+                    <img :src="thumbnail">
+                    <span class="card-title">{{ title }}</span>
                     </div>
                     <div class="card-content">
-                    <p>I am a very simple card. I am good at containing small bits of information.
-                    I am convenient because I require little markup to use effectively.</p>
+                    <p>{{ previewText }}</p>
                     </div>
                 </div>
         </nuxt-link>
@@ -19,18 +18,30 @@
     
     export default {
         props: {
-            post: {
-                type: Object,
-                required: true
-            },
             isAdmin: {
                 type: Boolean,
                 required: true
-            }            
+            },
+            thumbnail: {
+                type: String,
+                required: true
+            },
+            title: {
+                type: String,
+                required: true
+            },
+            previewText: {
+                type: String,
+                required: true
+            },
+            id: {
+                type: Number,
+                required: true
+            }         
         },
         computed: {
             postLink() {
-                return this.isAdmin ? `/admin/${this.post.id}` : `/posts/${this.post.id}`
+                return this.isAdmin ? `/admin/${this.id}` : `/posts/${this.id}`
             }
         }
     }

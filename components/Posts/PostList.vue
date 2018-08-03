@@ -3,9 +3,12 @@
         <div class="row">
           <PostPreview
             v-for="post in posts"
+            :is-admin="isAdmin"
             :key="post.id"
-            :post="post"
-            :is-admin="isAdmin">
+            :id="post.id"
+            :thumbnail="post.thumbnail"
+            :title="post.title"
+            :previewText="post.previewText">
           </PostPreview>    
         </div>
     </section>    
@@ -16,24 +19,17 @@
 import PostPreview from '~/components/Posts/PostPreview'
 
 export default {
-  data() {
-    return {
-      posts: [
-        {id: 1, title: 'wfwewefwe'},
-        {id: 2, title: 'wfwewefwe'},
-        {id: 3, title: 'wfwewefwe'},
-        {id: 4, title: 'wfwewefwe'},
-        {id: 5, title: 'wfwewefwe'}
-      ]
-    }
-  },
   components: {
     PostPreview
-  },
+  },  
   props: {
     isAdmin: {
       type: Boolean,
       default: false
+    },
+    posts: {
+      type: Array,
+      required: true
     }
   }
 }
