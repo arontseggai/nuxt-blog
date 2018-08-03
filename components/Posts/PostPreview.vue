@@ -1,6 +1,6 @@
 <template>
     <div class="col s12 m6 l4">
-        <nuxt-link :to="`/posts/${post.id}`">
+        <nuxt-link :to="postLink">
             <div class="card">
                     <div class="card-image">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Fairview_Dome.jpg/1600px-Fairview_Dome.jpg">
@@ -10,9 +10,6 @@
                     <p>I am a very simple card. I am good at containing small bits of information.
                     I am convenient because I require little markup to use effectively.</p>
                     </div>
-                    <div class="card-action">
-                    <a href="#">This is a link</a>
-                    </div>
                 </div>
         </nuxt-link>
     </div>
@@ -21,8 +18,20 @@
 <script>
     
     export default {
-        props: [
-            'post'
-        ]
+        props: {
+            post: {
+                type: Object,
+                required: true
+            },
+            isAdmin: {
+                type: Boolean,
+                required: true
+            }            
+        },
+        computed: {
+            postLink() {
+                return this.isAdmin ? `/admin/${this.post.id}` : `/posts/${this.post.id}`
+            }
+        }
     }
 </script>

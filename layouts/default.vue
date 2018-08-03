@@ -77,4 +77,7 @@
   .nuxt-link-exact-active {
     background-color: #ea454b;
   }
+  .brand-logo.nuxt-link-exact-active {
+    background-color: #ee6e73;
+  }
 </style>

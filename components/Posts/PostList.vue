@@ -1,7 +1,12 @@
 <template>
     <section class="post-list">
         <div class="row">
-        <PostPreview v-for="post in posts" :key="post.id" :post="post"></PostPreview>    
+          <PostPreview
+            v-for="post in posts"
+            :key="post.id"
+            :post="post"
+            :is-admin="isAdmin">
+          </PostPreview>    
         </div>
     </section>    
 </template>
@@ -24,6 +29,12 @@ export default {
   },
   components: {
     PostPreview
+  },
+  props: {
+    isAdmin: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
