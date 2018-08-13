@@ -28,7 +28,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#FFFFFF' },
+  loading: { color: '#8BBD8B', height: '6px', duration: 5000 },
 
   /*
   ** Global CSS
@@ -48,6 +48,10 @@ module.exports = {
   */
   modules: [
   ],
+  env: {
+    fbUrl: process.env.BASE_URL || 'https://nuxt-blog-19273.firebaseio.com/',
+    fbApiKey: 'AIzaSyB5LOTKMSS5G47xiMbA6ITV8IQSjeKIrH8'
+  },  
 
   /*
   ** Build configuration
@@ -59,5 +63,5 @@ module.exports = {
     extend(config, ctx) {
       
     }
-  }
+  } 
 }

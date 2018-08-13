@@ -1,25 +1,43 @@
 <template>
     <div class="post-page">
         <section class="post">
+            <img :src="loadedPost.thumbnail" alt="Image for:" style="height: 90vh;">
             <div class="card">
-                <div class="posted-at">XXXXXX</div>
-                <div class="author">False McName</div>
-                <div class="content">
-                    <h2 class="title">This is the title [{{ $route.params.id }}]</h2>
-                    <p class="content">This is the content of the post</p>
+                <div class="posted-at">Posted at {{ loadedPost.updatedDate }}</div>
+                <div class="author">Written by {{ loadedPost.author }}</div>
+                <div class="content-container">
+                    <h2 class="title">{{ loadedPost.title }}</h2>
+                    <p class="content">{{ loadedPost.content }}</p>
                 </div>
             </div>
         </section>
     </div>
 </template>
 
-<style scoped>
+<script>
+    import axios from 'axios'
+    export default {
+        created() {},
+        asyncData(context) {
+            return axios.get(`https://nuxt-blog-19273.firebaseio.com/posts/${context.params.id}.json`)
+                .then(response => {
+                    return { 
+                        loadedPost: response.data
+                    }
+                })
+                .catch( error => {
+                    context.error(error)
+                });
+        }
+    }
+</script>
 
+<style scoped>
     .post {
         display: flex;
         justify-content: center;
+        align-items: center;
     }
-
     .card {
         margin-top: 200px;
         padding: 10px;

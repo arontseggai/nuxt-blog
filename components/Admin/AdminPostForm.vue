@@ -3,7 +3,8 @@
         <div class="row">
             <AppControlInput uid="author_name" v-model="editedPost.author">Author Name</AppControlInput>
             <AppControlInput v-model="editedPost.title">Title</AppControlInput>
-            <AppControlInput v-model="editedPost.thumbnailLink">Thumbnail Link</AppControlInput>
+            <AppControlInput v-model="editedPost.thumbnail">Thumbnail Url</AppControlInput>
+            <AppControlInput v-model="editedPost.previewText">Preview  Text</AppControlInput>
             <AppControlInput
                 control-type="textarea"
                 v-model="editedPost.content">Content
@@ -46,7 +47,8 @@
                 editedPost: this.post ? { ...this.post } : {
                     author: '',
                     title: '',
-                    thumbnailLink: '',
+                    thumbnail: '',
+                    previewText: '',
                     content: ''
                 }
             }
@@ -57,6 +59,7 @@
             },
             onSave() {
                 console.log(this.editedPost)
+                this.$emit('submit', this.editedPost)
             }
         }
     }
